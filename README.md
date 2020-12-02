@@ -1,4 +1,6 @@
-# otus.linux.basic
+# Administrator Linux.Basic
+____
 
-test
-
+|Folder|Description|
+|-|-|
+|exc_1|Bash. Написание простых скриптов|
