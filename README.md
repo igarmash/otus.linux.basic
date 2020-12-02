@@ -1,5 +1,5 @@
 # Administrator Linux.Basic
-____
+
 
 |Folder|Description|
 |-|-|
