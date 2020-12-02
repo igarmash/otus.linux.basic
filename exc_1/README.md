@@ -16,6 +16,7 @@
 
 # Execution
 ```sh
+# start vagrant vm
 vagrant up
 
 # connect via ssh
