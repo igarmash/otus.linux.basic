@@ -40,10 +40,10 @@ echo "`date` `hostname` `whoami`: Do you want to change session SELinux state? S
 select yn in "Yes" "No"; do
     case $yn in
         Yes )
-          if [ $currentSELinuxState -eq 'enabled' ]; then
+          if [ $currentSELinuxState = 'enabled' ] ; then
             echo "`date` `hostname` `whoami`: Putting SELinux in permissive mode..."
             setenforce 0
-          else
+          elif [ $currentSELinuxState = 'disabled' ] ; then
             echo "`date` `hostname` `whoami`: Putting SELinux in enforcing mode..."
             setenforce 1
           fi
