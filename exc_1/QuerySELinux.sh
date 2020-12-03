@@ -41,11 +41,11 @@ select yn in "Yes" "No"; do
     case $yn in
         Yes )
           if [ $currentSELinuxState -eq 'enabled' ]; then
-            echo "`date` `hostname` `whoami`: Disabling SELinux in the current session..."
-            setenforce 1
+            echo "`date` `hostname` `whoami`: Puttig SELinux in permissive mode..."
+            setenforce 0
           else
-            echo "`date` `hostname` `whoami`: Enabling SELinux in the current session..."
-            setenforce 2
+            echo "`date` `hostname` `whoami`: Putting SELinux in enforcing mode..."
+            setenforce 1
           fi
           break;;
         No )
