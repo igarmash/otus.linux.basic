@@ -1,0 +1,49 @@
+Vagrant.configure("2") do |config|
+
+  # srvsql01 config
+
+  config.vm.define "srvsql001", primary: true do |srvsql001|
+
+    srvsql001.vm.hostname = "srvsql001"
+
+    srvsql001.vm.box = "generic/ubuntu2004"
+    srvsql001.vm.box_version = "3.1.14"
+
+    srvsql001.vm.network "public_network"
+    srvsql001.vm.network "private_network", ip: "192.168.254.10"
+
+    srvsql001.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+    end
+
+    #srvsql001.vm.provision "file", source: "./mysql_secure_installation.sql", destination: "$HOME/mysql_secure_installation.sql"
+    srvsql001.vm.provision "file", source: "./create_user_vagrant.sql", destination: "$HOME/create_user_vagrant.sql"
+    srvsql001.vm.provision "shell", path: "srvsql001_provision.sh"
+
+  end
+
+  # srvsql02 config
+
+  config.vm.define "srvsql002" do |srvsql002|
+
+    srvsql002.vm.hostname = "srvsql002"
+
+    srvsql002.vm.box = "generic/ubuntu2004"
+    srvsql002.vm.box_version = "3.1.14"
+
+    srvsql002.vm.network "public_network"
+    srvsql002.vm.network "private_network", ip: "192.168.254.20"
+
+    srvsql002.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = 2
+    end
+
+    srvsql002.vm.provision "file", source: "./mysql_secure_installation.sql", destination: "$HOME/mysql_secure_installation.sql"
+    srvsql002.vm.provision "file", source: "./create_user_vagrant.sql", destination: "$HOME/create_user_vagrant.sql"
+    #srvsql002.vm.provision "shell", path: "srvsql002_provision.sh"
+
+  end
+
+end
