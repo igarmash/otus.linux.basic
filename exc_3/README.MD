@@ -1,39 +1,34 @@
-## MySQL Engines
-* ванильный от
+# Установка MySQL-сервера и настройка репликации
 
-## Install MySQL Server
+> рассмотреть принципы репликации в MySQL:
+* что такое репликация;
+* почему мы не можем дублировать все sql-запросы на реплику
+* бинлоги;
+установить MySQL и проверять его работу;
+настроить репликацию master-slave:
+* настройка с использованием новой схемы аутентификации (caching_sha2_password);
+объяснить для чего нужна репликация master-master:
+* почему мы не получим прироста производительности при записи;
+* оптимальное использование mastes-master репликации (acive-passive);
+* знакомство с keepalived;
+настроить репликацию master-master.
 
-```sh
-# DEB
-sudo apt-get install -y mysql-server
+# ToDo
 
-# RHEL
-sudo dnf install -y mysql-server
-```
+> Настроить репликацию MySQL master-slave, настроить бэкап БД на slave (потаблично с указанием позиции бинлога)
+Цель: В результате выполнения ДЗ вы создадите репликацию базы данных master-slave для последующей работы с бекапами.
 
-## Initial MySQL config
-```sh
-sudo mysql_secure_installation
-```
-
-## Query daemon status
-```sh
-systemctl status mysqld.service
-```
-
-## Start MySQL
-```sh
-sudo systemctl start mysqld.service
-```
-
-##
-
-___
-
-## Useful links
-[[EN] DigitalOcean How To Use Systemctl to Manage Systemd Services and Units](https://www.digitalocean.com/community/tutorials/how-to-use-systemctl-to-manage-systemd-services-and-units)
-<br>
-[[EN] DigitalOcean
-How To Install MySQL on CentOS 8](https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-8)
-
-[[EN] Percona Different Types of MySQL Replication Solutions](https://www.percona.com/blog/2017/02/07/overview-of-different-mysql-replication-solutions/)
+> В данном задании тренируются навыки:
+- понимание предметной области задания;
+- установка ПО на сервер, работа с файлами конфигурации
+- построения репликации master-slave с последющей настройкой бекапа"
+Необходимо:
+- установить mysql на двух серверах
+- прверить доступность порта mysql с одного сервера на другой
+- создать пользователя для репликации на сервере master
+- настроить реплику slave
+- написать скрипт бекапа баз с реплики
+Критерии оценки: Критерии оценки:
+- настроена репликация master-slave - 3 балла
+- написан скрипт бекапа согласно заданию (потаблично с указанием позиции бинлога) - 4 балла
+- написан скрипт бекапа (без указания позиции бинлога) - 3 балла
