@@ -44,3 +44,6 @@ sleep 10
 # [SLAVE] Show replication status
 sudo mysql -e "show slave status\G;" | grep Slave_IO_State
 sudo mysql -e "show slave status\G;" | grep Slave_SQL_Running_State
+
+# Make the backup script executable
+sudo chmod a+x /home/vagrant/backup.sh

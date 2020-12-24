@@ -38,6 +38,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
 
+    srvsql002.vm.provision "file", source: "./backup.sh", destination: "$HOME/backup.sh"
     srvsql002.vm.provision "shell", path: "srvsql002_provision.sh"
 
   end
