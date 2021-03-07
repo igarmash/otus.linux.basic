@@ -4,6 +4,9 @@ echo "Hostname: $(hostname)"
 echo "Adding centos7 epel repository..."
 sudo yum install -y epel-release
 
+echo "Installing wget..."
+sudo yum install -y wget
+
 echo "Installing nginx..."
 sudo yum install -y nginx
 
