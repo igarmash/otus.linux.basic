@@ -1,0 +1,148 @@
+Vagrant.configure("2") do |config|
+
+    # disable vbox guest additions
+    if Vagrant.has_plugin?("vagrant-vbguest")
+      config.vbguest.auto_update = false
+    end
+
+    # rp01 config
+    config.vm.define "rp01", primary: true do |rp01|
+
+     rp01.vm.hostname = "rp01"
+
+      rp01.vm.box = "centos/7"
+      rp01.vm.box_version = "2004.01"
+
+      rp01.vm.network "private_network", ip: "192.168.254.11"
+
+      rp01.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 1
+      end
+
+      #rp01.vm.provision "shell", path: "./rp01/install.sh"
+      #rp01.vm.provision "shell", path: "./rp01/finalize.sh"
+
+    end
+
+    # web01 config
+    config.vm.define "web01", primary: true do |web01|
+
+     web01.vm.hostname = "web01"
+
+      web01.vm.box = "centos/7"
+      web01.vm.box_version = "2004.01"
+
+      web01.vm.network "private_network", ip: "192.168.254.21"
+
+      web01.vm.provider "virtualbox" do |vb|
+        vb.memory = "2048"
+        vb.cpus = 1
+      end
+
+      #web01.vm.provision "shell", path: "./web01/install.sh"
+      #web01.vm.provision "shell", path: "./web01/finalize.sh"
+
+    end
+
+    # web02 config
+    config.vm.define "web02", primary: true do |web02|
+
+        web02.vm.hostname = "web02"
+
+         web02.vm.box = "centos/7"
+         web02.vm.box_version = "2004.01"
+
+         web02.vm.network "private_network", ip: "192.168.254.22"
+
+         web02.vm.provider "virtualbox" do |vb|
+           vb.memory = "2048"
+           vb.cpus = 1
+         end
+
+      #web02.vm.provision "shell", path: "./web02/install.sh"
+      #web02.vm.provision "shell", path: "./web02/finalize.sh"
+
+    end
+
+    # web03 config
+    config.vm.define "web03", primary: true do |web03|
+
+        web03.vm.hostname = "web03"
+
+         web03.vm.box = "centos/7"
+         web03.vm.box_version = "2004.01"
+
+         web03.vm.network "private_network", ip: "192.168.254.23"
+
+         web03.vm.provider "virtualbox" do |vb|
+           vb.memory = "2048"
+           vb.cpus = 1
+         end
+
+      #web03.vm.provision "shell", path: "./web03/install.sh"
+      #web03.vm.provision "shell", path: "./web03/finalize.sh"
+
+    end
+
+    # sql01 config
+    config.vm.define "sql01", primary: true do |sql01|
+
+        sql01.vm.hostname = "sql01"
+
+         sql01.vm.box = "centos/7"
+         sql01.vm.box_version = "2004.01"
+
+         sql01.vm.network "private_network", ip: "192.168.254.51"
+
+         sql01.vm.provider "virtualbox" do |vb|
+           vb.memory = "2048"
+           vb.cpus = 1
+         end
+
+      #sql01.vm.provision "shell", path: "./sql01/install.sh"
+      #sql01.vm.provision "shell", path: "./sql01/finalize.sh"
+
+    end
+
+    # sql02 config
+    config.vm.define "sql02", primary: true do |sql02|
+
+        sql02.vm.hostname = "sql02"
+
+         sql02.vm.box = "centos/7"
+         sql02.vm.box_version = "2004.01"
+
+         sql02.vm.network "private_network", ip: "192.168.254.52"
+
+         sql02.vm.provider "virtualbox" do |vb|
+           vb.memory = "2048"
+           vb.cpus = 1
+         end
+
+      #sql02.vm.provision "shell", path: "./sql02/install.sh"
+      #sql02.vm.provision "shell", path: "./sql02/finalize.sh"
+
+    end
+
+    # mon01 config
+    config.vm.define "mon01", primary: true do |mon01|
+
+        mon01.vm.hostname = "mon01"
+
+         mon01.vm.box = "centos/7"
+         mon01.vm.box_version = "2004.01"
+
+         mon01.vm.network "private_network", ip: "192.168.254.81"
+
+         mon01.vm.provider "virtualbox" do |vb|
+           vb.memory = "2048"
+           vb.cpus = 1
+         end
+
+      #mon01.vm.provision "shell", path: "./mon01/install.sh"
+      #mon01.vm.provision "shell", path: "./mon01/finalize.sh
+
+    end
+
+end
