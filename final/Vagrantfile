@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
       end
 
       rp01.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-      rp01.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+      rp01.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
       rp01.vm.provision "shell", path: "./rp01/provision.sh"
 
     end
@@ -34,6 +34,7 @@ Vagrant.configure("2") do |config|
       web01.vm.box = "centos/7"
       web01.vm.box_version = "2004.01"
 
+      web01.vm.network "forwarded_port", guest: 80, host: 8080, host_ip: "127.0.0.1"
       web01.vm.network "private_network", ip: "192.168.254.21"
 
       web01.vm.provider "virtualbox" do |vb|
@@ -42,7 +43,7 @@ Vagrant.configure("2") do |config|
       end
 
       web01.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-      web01.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+      web01.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
       web01.vm.provision "shell", path: "./web01/provision.sh"
 
     end
@@ -63,7 +64,7 @@ Vagrant.configure("2") do |config|
          end
 
          web02.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-         web02.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         web02.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
          web02.vm.provision "shell", path: "./web02/provision.sh"
 
     end
@@ -84,7 +85,7 @@ Vagrant.configure("2") do |config|
          end
 
          sql01.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-         sql01.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         sql01.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
          sql01.vm.provision "shell", path: "./sql01/provision.sh"
 
     end
@@ -105,7 +106,7 @@ Vagrant.configure("2") do |config|
          end
 
          sql02.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-         sql02.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         sql02.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
          sql02.vm.provision "shell", path: "./sql02/provision.sh"
 
     end
@@ -128,7 +129,11 @@ Vagrant.configure("2") do |config|
          end
 
          mon01.vm.provision "file", source: "./etc/node_exporter/node_exporter.service", destination: "/home/vagrant/"
-         mon01.vm.provision "file", source:  "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         mon01.vm.provision "file", source: "./etc/node_exporter/node_exporter-1.1.1.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         mon01.vm.provision "file", source: "./etc/prometheus/prometheus-2.25.0.linux-amd64.tar.gz", destination: "/home/vagrant/"
+         mon01.vm.provision "file", source: "./etc/grafana/grafana-7.4.2-1.x86_64.rpm", destination: "/home/vagrant/"
+         mon01.vm.provision "file", source: "./mon01/prometheus.service", destination: "/home/vagrant/"
+         mon01.vm.provision "file", source: "./mon01/prometheus.yml", destination: "/home/vagrant/"
          mon01.vm.provision "shell", path: "./mon01/provision.sh"
 
     end
